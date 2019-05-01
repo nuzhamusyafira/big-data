@@ -52,3 +52,5 @@ Aplikasi ini merupakan *recommendation engine* yang dibangun menggunakan ``Flask
 - *Output* dan *Screenshot*:
 
 ![3](img/3.PNG)
+## *Credits*
+https://github.com/jadianes/spark-movie-lens
