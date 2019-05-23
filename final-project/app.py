@@ -25,7 +25,7 @@ def get_cluster2(crime_id):
     cluster_category = clustering_engine.get_cluster(crime_id)
     return json.dumps(cluster_category)
 
-@main.route("/model2/<int:crime_id>/cluster", methods=["GET"])
+@main.route("/model3/<int:crime_id>/cluster", methods=["GET"])
 def get_cluster3(crime_id):
     logger.debug("ID %s requested", crime_id)
     cluster_category = clustering_engine.get_cluster(crime_id)
