@@ -22,8 +22,8 @@ def run_server(app):
     cherrypy.config.update({
         'engine.autoreload.on': True,
         'log.screen': True,
-        'server.socket_port': 2222,
-        'server.socket_host': '0.0.0.0'
+        'server.socket_port': 6000,
+        'server.socket_host': '127.0.0.1'
     })
 
     # Start the CherryPy WSGI web server
