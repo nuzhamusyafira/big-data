@@ -52,7 +52,7 @@ class ClusteringEngine:
         model_1 = kmeans_1.fit(self.df_crime1)
         logger.info("Model 1 built!")
         logger.info("Evaluating the model 1...")
-        self.centers_1 = model_1.clusterCenters()
+        self.predictions_1 = model_1.transform(self.df_crime1)
         logger.info("Model 1 Done !")
 
         logger.info("Training model 2...")
@@ -60,7 +60,7 @@ class ClusteringEngine:
         model_2 = kmeans_2.fit(self.df_crime2)
         logger.info("Model 2 built!")
         logger.info("Evaluating the model 2...")
-        self.centers_2 = model_2.clusterCenters()
+        self.predictions_2 = model_2.transform(self.df_crime2)
         logger.info("Model 2 Done !")
 
         logger.info("Training model 3...")
@@ -68,26 +68,35 @@ class ClusteringEngine:
         model_3 = kmeans_3.fit(self.df_crime3)
         logger.info("Model 3 built!")
         logger.info("Evaluating the model 3...")
-        self.centers_3 = model_3.clusterCenters()
+        self.predictions_3 = model_3.transform(self.df_crime3)
         logger.info("Model 3 Done !")
 
 
     def get_cluster1(self, crime_id):
         """Recommends up to movies_count top unrated movies to user_id
         """
-        return 2
+        pred = self.predictions_1.filter(self.predictions_1['INCIDENT_ID'] == crime_id)
+        pred = pred.toPandas()
+        pred = pred.to_json()
+        return pred
 
         
     def get_cluster2(self, crime_id):
         """Recommends up to movies_count top unrated movies to user_id
         """
-        return 2
+        pred = self.predictions_2.filter(self.predictions_2['INCIDENT_ID'] == crime_id)
+        pred = pred.toPandas()
+        pred = pred.to_json()
+        return pred
 
         
     def get_cluster3(self, crime_id):
         """Recommends up to movies_count top unrated movies to user_id
         """
-        return 2
+        pred = self.predictions_3.filter(self.predictions_3['INCIDENT_ID'] == crime_id)
+        pred = pred.toPandas()
+        pred = pred.to_json()
+        return pred
 
 
     def __init__(self, spark_session, dataset_path):

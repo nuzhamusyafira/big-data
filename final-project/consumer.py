@@ -10,7 +10,7 @@ consumer = KafkaConsumer(
      value_deserializer=lambda x: loads(x.decode('utf-8')))
 
 folder_path = os.path.join(os.getcwd(), 'dataset-kafka')
-limit = 100000
+limit = 1000
 row = 1
 model = 1
 model_limit = 3
