@@ -10,30 +10,30 @@ consumer = KafkaConsumer(
      value_deserializer=lambda x: loads(x.decode('utf-8')))
 
 folder_path = os.path.join(os.getcwd(), 'dataset-kafka')
-batch_limit = 50
-batch_counter = 1
-batch_number = 1
-batch_len = 3
+limit = 140000
+row = 1
+model = 1
+model_limit = 3
 try:
     for message in consumer:
-        if batch_number > batch_len:
+        if model > model_limit:
             writefile.close()
             break
         else:
-            if batch_counter > batch_limit:
-                batch_counter = 1
-                batch_number += 1
+            if row > limit:
+                row = 1
+                model += 1
                 writefile.close()
-            if batch_number > batch_len:
+            if model > model_limit:
                 writefile.close()
                 break
-            if batch_counter == 1:
-                file_path = os.path.join(folder_path, ('model-' + str(batch_number) + '.txt'))
+            if row == 1:
+                file_path = os.path.join(folder_path, ('model-' + str(model) + '.txt'))
                 writefile = open(file_path, "w", encoding="utf-8")
             message = message.value
             writefile.write(message)
-            print('current batch : ' + str(batch_number) + ' current data for this batch : ' + str(batch_counter))
-            batch_counter += 1
+            print('current batch : ' + str(model) + ' current data for this batch : ' + str(row))
+            row += 1
 except KeyboardInterrupt:
     writefile.close()
     print('Keyboard Interrupt called by user, exiting.....')
