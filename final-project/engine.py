@@ -46,30 +46,30 @@ class ClusteringEngine:
 
     def __train_model(self):
         """Train the ALS model with the current dataset
-        # """
-        # logger.info("Training model 1...")
-        # kmeans_1 = KMeans().setK(9).setSeed(1)
-        # model_1 = kmeans_1.fit(self.df_crime1)
-        # logger.info("Model 1 built!")
-        # logger.info("Evaluating the model 1...")
-        # self.centers_1 = model_1.clusterCenters()
-        # logger.info("Model 1 Done !")
+        """
+        logger.info("Training model 1...")
+        kmeans_1 = KMeans().setK(9).setSeed(1)
+        model_1 = kmeans_1.fit(self.df_crime1)
+        logger.info("Model 1 built!")
+        logger.info("Evaluating the model 1...")
+        self.centers_1 = model_1.clusterCenters()
+        logger.info("Model 1 Done !")
 
-        # logger.info("Training model 2...")
-        # kmeans_2 = KMeans().setK(9).setSeed(1)
-        # model_2 = kmeans_2.fit(self.df_crime2)
-        # logger.info("Model 2 built!")
-        # logger.info("Evaluating the model 2...")
-        # self.centers_2 = model_2.clusterCenters()
-        # logger.info("Model 2 Done !")
+        logger.info("Training model 2...")
+        kmeans_2 = KMeans().setK(9).setSeed(1)
+        model_2 = kmeans_2.fit(self.df_crime2)
+        logger.info("Model 2 built!")
+        logger.info("Evaluating the model 2...")
+        self.centers_2 = model_2.clusterCenters()
+        logger.info("Model 2 Done !")
 
-        # logger.info("Training model 3...")
-        # kmeans_3 = KMeans().setK(9).setSeed(1)
-        # model_3 = kmeans_3.fit(self.df_crime3)
-        # logger.info("Model 3 built!")
-        # logger.info("Evaluating the model 3...")
-        # self.centers_3 = model_3.clusterCenters()
-        # logger.info("Model 3 Done !")
+        logger.info("Training model 3...")
+        kmeans_3 = KMeans().setK(9).setSeed(1)
+        model_3 = kmeans_3.fit(self.df_crime3)
+        logger.info("Model 3 built!")
+        logger.info("Evaluating the model 3...")
+        self.centers_3 = model_3.clusterCenters()
+        logger.info("Model 3 Done !")
 
 
     def get_cluster1(self, crime_id):
