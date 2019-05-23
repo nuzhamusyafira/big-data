@@ -12,7 +12,7 @@ producer = KafkaProducer(bootstrap_servers=['localhost:9092'],
 dataset_folder_path = os.path.join(os.getcwd(), 'dataset')
 dataset_file_path = os.path.join(dataset_folder_path, 'crime_preprocessed.csv')
 model = 3
-limit = 140000
+limit = 100000
 counter = 0
 with open(dataset_file_path,"r", encoding="utf-8") as f:
     for row in f:
