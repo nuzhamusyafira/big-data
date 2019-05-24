@@ -15,6 +15,8 @@ model = 3
 limit = 5000
 counter = 0
 with open(dataset_file_path,"r", encoding="utf-8") as f:
+    if counter > model*limit:
+    	break
     for row in f:
         if counter > model*limit:
             break
