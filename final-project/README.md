@@ -1,10 +1,12 @@
 # *REST API Clustering System with Kafka*
 ## Deskripsi Aplikasi
-Aplikasi ini merupakan *clustering engine* yang dibangun menggunakan ``Flask``. Struktur aplikasi utama terdiri dari `server.py`, `app.py`, dan `engine.py` dan menggunakan `Kafka` untuk *data streaming*.
+Aplikasi ini merupakan *clustering engine* yang dibangun menggunakan ``Flask``. Struktur aplikasi utama terdiri dari `server.py`, `app.py`, dan `engine.py` dan menggunakan `Kafka` (`producer.py` dan `consumer.py`) untuk *data streaming*.
 - `server.py` merupakan penyedia layanan dari aplikasi. `server.py` dijalankan pertama kali untuk inisiasi.
-- `app.py` dipanggil oleh `server.py` saat proses inisiasi. `app.py` juga menyediakan *routing* untuk aplikasi sekaligus perantara ke `engine.py`
+- `app.py` dipanggil oleh `server.py` saat proses inisiasi. `app.py` juga menyediakan *routing* untuk aplikasi sekaligus perantara ke `engine.py`.
 - `engine.py` adalah tempat di mana *logic* atau *backend* aplikasi disimpan. Proses-proses seperti *loading dataset*, *training model*, dan algoritma ``KMeans`` diletakkan di file ini.
-## *URL*
+- `producer.py` merupakan *data fetcher* dan nantinya bertugas mengirimkan data ke `consumer.py`. Pada sistem ini, dataset yang digunakan adalah Denver Crimes yang telah di*preprocess* sebelumnya menjadi `crime_preprocessed.csv`.
+- `consumer.py` berfungsi untuk menerima data dari `producer.py` yang nantinya akan digunakan oleh `engine.py` pada saat pemrosesan data.
+## *URL* / *Endpoint*
 *URL* dapat ditambah atau diubah pada file `app.py`. *URL* yang sementara dapat diakses yaitu:
 - `http://<host>:<port>/model1/<int:crime_id>/cluster`
 - `http://<host>:<port>/model2/<int:crime_id>/cluster`
