@@ -7,6 +7,8 @@ Aplikasi ini merupakan *clustering engine* yang dibangun menggunakan ``Flask``. 
 - `producer.py` merupakan *data fetcher* dan nantinya bertugas mengirimkan data ke `consumer.py`. Pada sistem ini, dataset yang digunakan adalah Denver Crimes yang telah di*preprocess* sebelumnya menjadi `crime_preprocessed.csv`.
 - `consumer.py` berfungsi untuk menerima data dari `producer.py` yang nantinya akan digunakan oleh `engine.py` pada saat pemrosesan data.
 ## Alur Aplikasi
+![0](img/arsitektur.png)
+
 1. Terdapat sebuah file dataset yang akan dibaca secara sekuensial oleh Kafka Producer.
 2. Kafka Producer akan mengirimkan data per baris ke Kafka Server seolah-olah sedang
 melakukan streaming. Proses ini dapat dilakukan dengan menambahkan jeda/sleep secara
