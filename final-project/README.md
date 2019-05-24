@@ -4,7 +4,7 @@ Aplikasi ini merupakan *clustering engine* yang dibangun menggunakan ``Flask``. 
 - `server.py` merupakan penyedia layanan dari aplikasi. `server.py` dijalankan pertama kali untuk inisiasi.
 - `app.py` dipanggil oleh `server.py` saat proses inisiasi. `app.py` juga menyediakan *routing* untuk aplikasi sekaligus perantara ke `engine.py`.
 - `engine.py` adalah tempat di mana *logic* atau *backend* aplikasi disimpan. Proses-proses seperti *loading dataset*, *training model*, dan algoritma ``KMeans`` diletakkan di file ini.
-- `producer.py` merupakan *data fetcher* dan nantinya bertugas mengirimkan data ke `consumer.py`. Pada sistem ini, dataset yang digunakan adalah Denver Crimes yang telah di*preprocess* sebelumnya menjadi `crime_preprocessed.csv`.
+- `producer.py` merupakan *data fetcher* dan nantinya bertugas mengirimkan data ke `consumer.py`. Pada sistem ini, dataset yang digunakan adalah [Denver Crime](https://www.kaggle.com/paultimothymooney/denver-crime-data/downloads/denver-crime-data.zip/85) yang telah di*preprocess* sebelumnya menjadi `crime_preprocessed.csv`.
 - `consumer.py` berfungsi untuk menerima data dari `producer.py` yang nantinya akan digunakan oleh `engine.py` pada saat pemrosesan data.
 ## Alur Aplikasi
 ![0](img/arsitektur.png)
