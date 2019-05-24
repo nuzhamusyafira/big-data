@@ -16,12 +16,10 @@ logger = logging.getLogger(__name__)
 
 
 class ClusteringEngine:
-    """A movie recommendation engine
-    """
+
 
     def __transform_model(self):
-        """Train the ALS model with the current dataset
-        """
+
         logger.info("Transforming model 1...")
         self.df_crime1 = self.df_crime1.withColumn("GEO_LAT", self.df_crime1["GEO_LAT"].cast("double"))
         self.df_crime1 = self.df_crime1.withColumn("GEO_LON", self.df_crime1["GEO_LON"].cast("double"))
@@ -45,8 +43,7 @@ class ClusteringEngine:
 
 
     def __train_model(self):
-        """Train the ALS model with the current dataset
-        """
+
         logger.info("Training model 1...")
         kmeans_1 = KMeans().setK(9).setSeed(1)
         model_1 = kmeans_1.fit(self.df_crime1)
@@ -73,8 +70,7 @@ class ClusteringEngine:
 
 
     def get_cluster1(self, crime_id):
-        """Recommends up to movies_count top unrated movies to user_id
-        """
+
         pred = self.predictions_1.filter(self.predictions_1['INCIDENT_ID'] == crime_id)
         pred = pred.toPandas()
         pred = pred.to_json()
@@ -82,8 +78,7 @@ class ClusteringEngine:
 
         
     def get_cluster2(self, crime_id):
-        """Recommends up to movies_count top unrated movies to user_id
-        """
+
         pred = self.predictions_2.filter(self.predictions_2['INCIDENT_ID'] == crime_id)
         pred = pred.toPandas()
         pred = pred.to_json()
@@ -91,8 +86,7 @@ class ClusteringEngine:
 
         
     def get_cluster3(self, crime_id):
-        """Recommends up to movies_count top unrated movies to user_id
-        """
+
         pred = self.predictions_3.filter(self.predictions_3['INCIDENT_ID'] == crime_id)
         pred = pred.toPandas()
         pred = pred.to_json()
@@ -100,8 +94,7 @@ class ClusteringEngine:
 
 
     def __init__(self, spark_session, dataset_path):
-        """Init the recommendation engine given a Spark context and a dataset path
-        """
+        
         logger.info("Starting up the Clustering Engine: ")
         self.spark_session = spark_session
         # Load ratings data for later use
