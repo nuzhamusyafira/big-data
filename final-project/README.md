@@ -6,6 +6,19 @@ Aplikasi ini merupakan *clustering engine* yang dibangun menggunakan ``Flask``. 
 - `engine.py` adalah tempat di mana *logic* atau *backend* aplikasi disimpan. Proses-proses seperti *loading dataset*, *training model*, dan algoritma ``KMeans`` diletakkan di file ini.
 - `producer.py` merupakan *data fetcher* dan nantinya bertugas mengirimkan data ke `consumer.py`. Pada sistem ini, dataset yang digunakan adalah Denver Crimes yang telah di*preprocess* sebelumnya menjadi `crime_preprocessed.csv`.
 - `consumer.py` berfungsi untuk menerima data dari `producer.py` yang nantinya akan digunakan oleh `engine.py` pada saat pemrosesan data.
+## Alur Aplikasi
+1. Terdapat sebuah file dataset yang akan dibaca secara sekuensial oleh Kafka Producer.
+2. Kafka Producer akan mengirimkan data per baris ke Kafka Server seolah-olah sedang
+melakukan streaming. Proses ini dapat dilakukan dengan menambahkan jeda/sleep secara
+random agar data tidak dikirimkan secara langsung.
+3. Kafka consumer membaca data yang ada di dalam Kafka server dan akan menyimpan data
+yang diterima dalam bentuk batch. Batch ditentukan berdasarkan jumlah data yang diterima, sehingga nanti akan didapatkan beberapa file dataset sesuai dengan batch yang dipilih.
+4. Spark script bertugas untuk melakukan training model sesuai dengan data yang masuk.
+Terdapat 3 model yang dihasilkan sesuai dengan jumlah data yang masuk dengan skema sebagai berikut:
+   1. Model 1: Menggunakan 5000 data pertama.
+   2. Model 2: Menggunakan 5000 data kedua.
+   3. Model 3: Menggunakan 5000 data ketiga.
+5. Model-model yang dihasilkan akan digunakan di dalam API.
 ## *URL* / *Endpoint*
 *URL* dapat ditambah atau diubah pada file `app.py`. *URL* yang sementara dapat diakses yaitu:
 - `http://<host>:<port>/model1/<int:crime_id>/cluster`
