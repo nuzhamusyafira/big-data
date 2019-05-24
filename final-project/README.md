@@ -26,6 +26,27 @@ Terdapat 3 model yang dihasilkan sesuai dengan jumlah data yang masuk dengan ske
 - `http://<host>:<port>/model3/<int:crime_id>/cluster`
 
 ``host`` dan ``port`` dapat dimodifikasi pada file `server.py`. Pada aplikasi kali ini, penulis menggunakan `127.0.0.1` (`localhost`) dengan port `6000`.
+## Cara Menjalankan
+1. Pastikan `zookeeper`, `Kafka`, dan module lainnya telah terinstall dan dapat dijalankan.
+2. Buat folder `dataset` dan letakkan *preprocessed data* di dalamnya.
+3. Buat folder `dataset-kafka` untuk menyimpan model-model yang dihasilkan dari `Kafka`.
+4. Jalankan `zookeeper` dengan *command* `zkserver`.
+
+![0](img/zookeeper.PNG)
+
+5. Jalankan `Kafka` dengan *command* `.\bin\windows\kafka-server-start.bat .\config\server.properties` pada direktori penyimpanan `Kafka`.
+
+![0](img/kafka.PNG)
+
+6. Jalankan `producer.py` dan `consumer.py` (pastikan *topic* yang dipilih telah terbentuk sebelumnya). Tunggu hingga berhasil men*generate* seluruh model.
+
+![producer](img/producer.PNG)
+
+![consumer](img/consumer.PNG)
+
+7. Jalankan `server.py`.
+
+![0](img/server.PNG)
 ## *Testing*
 ### 1. Mendapatkan Prediksi *Clustering* untuk *INCIDENT_ID* Tertentu pada Model 1
 - *URL*: `http://<host>:<port>/model1/<crime_id>/cluster`
